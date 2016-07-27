@@ -36,14 +36,11 @@ public class ClienteApplication {
                 }
             }
             String op;
-            do{
-            System.out.print("");
-            op = keyboard.nextLine().toLowerCase();
-            String mensagem;
-            if(op.equals("help")){
-                op = "10";
-            }
-                switch (op) {
+            do {
+                System.out.print("");
+                op = keyboard.nextLine().toLowerCase();
+                String mensagem;
+                switch (op.toLowerCase()) {
                     case "0":
                         s.sair(c);
                         System.exit(0);
@@ -68,7 +65,7 @@ public class ClienteApplication {
                         mensagem = keyboard.nextLine();
                         s.rename(c, mensagem.toUpperCase());
                         break;
-                    case "10":
+                    case "help":
                         System.out.println("1 - Envia mensagem para todos");
                         System.out.println("2 - Envia mensagem para um usuario");
                         System.out.println("3 - Lista todos os usuarios na sala");
@@ -79,8 +76,7 @@ public class ClienteApplication {
                         System.out.println("Comando invalido! Digite HELP para ajuda");
                         break;
                 }
-            }while(!op.equals("0"));
-            
+            } while (!op.equals("0"));
 
         } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             Logger.getLogger(ClienteApplication.class.getName()).log(Level.SEVERE, null, ex);
