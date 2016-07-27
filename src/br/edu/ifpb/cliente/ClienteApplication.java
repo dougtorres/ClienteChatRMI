@@ -38,53 +38,51 @@ public class ClienteApplication {
             String op;
             do{
             System.out.print("");
-            op = keyboard.nextLine();
+            op = keyboard.nextLine().toLowerCase();
             String mensagem;
-            
-                switch (op.toLowerCase()) {
-                    case "bye":
+            if(op.equals("help")){
+                op = "10";
+            }
+                switch (op) {
+                    case "0":
                         s.sair(c);
                         System.exit(0);
                         break;
-                    case "send -all":
+                    case "1":
                         System.out.println("Digite a mensagem: ");
                         mensagem = keyboard.nextLine();
                         s.sendAll(c, mensagem);
                         break;
-                    case "send -user":
+                    case "2":
                         System.out.println("Digite o nome do usuario: ");
                         String nomeUser = keyboard.nextLine();
                         System.out.println("Digite a mensagem: ");
                         mensagem = keyboard.nextLine();
                         s.sendUser(c, nomeUser.toUpperCase(), mensagem);
                         break;
-                    case "list":
+                    case "3":
                         s.list(c);
                         break;
-                    case "rename":
+                    case "4":
                         System.out.println("Digite o novo nome: ");
                         mensagem = keyboard.nextLine();
                         s.rename(c, mensagem.toUpperCase());
                         break;
-                    case "help":
-                        System.out.println("Send -all - Envia mensagem para todos");
-                        System.out.println("Send -user - Envia mensagem para um usuario");
-                        System.out.println("list - Lista todos os usuarios na sala");
-                        System.out.println("rename - Renomeia o seu nome");
-                        System.out.println("bye - sair");
+                    case "10":
+                        System.out.println("1 - Envia mensagem para todos");
+                        System.out.println("2 - Envia mensagem para um usuario");
+                        System.out.println("3 - Lista todos os usuarios na sala");
+                        System.out.println("4 - Renomeia o seu nome");
+                        System.out.println("0 - sair");
                         break;
                     default:
-                        System.out.println("Comando invalido!");
+                        System.out.println("Comando invalido! Digite HELP para ajuda");
                         break;
                 }
-            }while(op.toLowerCase() != "bye");
+            }while(!op.equals("0"));
             
 
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ClienteApplication.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ClienteApplication.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
+        } catch (NotBoundException | MalformedURLException | RemoteException ex) {
             Logger.getLogger(ClienteApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
 
